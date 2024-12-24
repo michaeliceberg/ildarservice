@@ -32,7 +32,7 @@ import {
         <h1 className="flex justify-center w-full">
         {сity}
     </h1>
-        <div className="w-full bg-white pb-3 flex items-center justify-between border-b-2 mb-5 text-neutral-400 lg:z-50">
+        <div className="w-full bg-white pb-3 flex items-center justify-between border-b-2 mb-5 font-bold lg:z-50">
 
 
 
