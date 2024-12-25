@@ -11,7 +11,6 @@ import { TableIncome } from "@/components/table-income"
 const IncomePage = async () => {
 
     const dailyIncome = await getDailyIncomeData()
-    // console.log("dataSheet: ", dailyIncome)
 
 
     if (!dailyIncome) {

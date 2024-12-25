@@ -27,52 +27,64 @@ import {
 
 
     return(
-        
+        // flex justify-center w-full 
         <div>
-        <h1 className="flex justify-center w-full">
-        {сity}
-    </h1>
-        <div className="w-full bg-white pb-3 flex items-center justify-between border-b-2 mb-5 font-bold lg:z-50">
+            <h1 
+                
+
+                className= {
+                    сity == 'Щёлково' 
+                    ? "w-full rounded-xl  bg-green-500 p-5 text-white flex items-center justify-between" 
+                    : сity == 'Посад' 
+                    ? "w-full rounded-xl  bg-blue-500 p-5 text-white flex items-center justify-between"
+                    : "w-full rounded-xl  bg-rose-500 p-5 text-white flex items-center justify-between"
+                } 
+                
+                >
+                {сity}
+            </h1>
+            {/* <div className="w-full bg-white pb-3 flex items-center justify-between border-b-2 mb-5 font-bold lg:z-50"> */}
+
+            <div>
 
 
-
-        <div className="pb-20">
-
-
-            <Table>
-                {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[100px]">Время</TableHead>
-                        <TableHead>Тонн</TableHead>
-                        <TableHead>Материал</TableHead>
-                        <TableHead>🚚</TableHead>
-                        <TableHead className="text-right">Контраг</TableHead>
-                    </TableRow>
-                </TableHeader>
-
-{/* 
-                {ResultLeaderTable.map((cur_user_stat, index) => (
-                    <>
-                        <li key={index}> */}
+            <div className="pb-20">
 
 
-
-                <TableBody>
-                    {dailyIncome.map((el, index) => (
-                        <TableRow key={index}>
-                            <TableCell className="font-medium">{el[0] }</TableCell>
-                            <TableCell>{el[1]}</TableCell>
-                            <TableCell>{el[3]}</TableCell>
-                            <TableCell>{el[4]}</TableCell>
-                            <TableCell className="text-right">{el[5].slice(0,7)}</TableCell>
+                <Table>
+                    {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[100px]">Время</TableHead>
+                            <TableHead>Тонн</TableHead>
+                            <TableHead>Материал</TableHead>
+                            <TableHead>🚚</TableHead>
+                            <TableHead className="text-right">Контраг</TableHead>
                         </TableRow>
-                    ))}
-                    
-                </TableBody>
-                </Table>
-                </div>
-        </div>
+                    </TableHeader>
+
+    {/* 
+                    {ResultLeaderTable.map((cur_user_stat, index) => (
+                        <>
+                            <li key={index}> */}
+
+
+
+                    <TableBody>
+                        {dailyIncome.map((el, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="font-medium">{el[0] }</TableCell>
+                                <TableCell>{el[1]}</TableCell>
+                                <TableCell>{el[3]}</TableCell>
+                                <TableCell>{el[4]}</TableCell>
+                                <TableCell className="text-right">{el[5].slice(0,7)}</TableCell>
+                            </TableRow>
+                        ))}
+                        
+                    </TableBody>
+                    </Table>
+                    </div>
+            </div>
         </div>
     )
   }

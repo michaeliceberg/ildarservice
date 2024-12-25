@@ -65,7 +65,7 @@ export const getWeightsData = async () => {
 
     })
     const sheets = google.sheets({version:"v4", auth: await auth.getClient()})
-    const range = "inout!AE1:AK200"
+    const range = "inout!AE1:AK20"
 
     try {
         const response = await sheets.spreadsheets.values.get({
