@@ -1,15 +1,15 @@
 import { FeedWrapper } from "@/components/feed-wrapper"
+import { Header } from "@/components/header"
 import { StickyWrapper } from "@/components/sticky-wrapper"
-import { Header } from "./header"
 import { UserProgress } from "@/components/user-progress"
 // import { getIncOut } from "@/db/queries"
 // import { TableInOut } from "@/components/table-inout"
-// import { getBetonData } from "../../_lib/readSheet"
+// import { getWeightsData } from "../../_lib/readSheet"
 
 
- const IncomePage = async () => {
+ const ExpensesPage = async () => {
 
-    // const dataSheet = await getBetonData()
+    // const dataSheet = await getWeightsData()
     // console.log("dataSheet: ", dataSheet)
 
 
@@ -26,7 +26,7 @@ import { UserProgress } from "@/components/user-progress"
             </StickyWrapper>
 
             <FeedWrapper>
-                <Header title='Бетон'/>
+                <Header title='Расход материала'/>
 
                 {/* <TableInOut data={data} /> */}
             </FeedWrapper>
@@ -34,4 +34,4 @@ import { UserProgress } from "@/components/user-progress"
     )
  }
 
- export default IncomePage
+ export default ExpensesPage

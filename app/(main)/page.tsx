@@ -1,64 +1,22 @@
 import { FeedWrapper } from "@/components/feed-wrapper"
 import { StickyWrapper } from "@/components/sticky-wrapper"
-import { Header } from "./header"
 import { UserProgress } from "@/components/user-progress"
 // import { getDailyIncomeData } from "../../_lib/readSheet"
 // import { TableInOut } from "@/components/table-inout"
 import { TableIncome } from "@/components/table-income"
 import { getDailyIncomeData } from "../_lib/readSheet"
+import { Header } from "@/components/header"
+// import { useRecipeModal } from "../store/use-exit-modal"
 
 
  const IncomePage = async () => {
 
-    const dailyIncome = await getDailyIncomeData()
-    // console.log("dataSheet: ", dailyIncome)
 
+    const dailyIncome = await getDailyIncomeData()
 
     if (!dailyIncome) {
 		throw new Error('Нет прихода!');
 	}
-
-
-    // dailyIncome = dailyIncome?.length > 0 ? []: dailyIncome 
-    // const dailyIncome = [
-    //     [ 'Приход АЙСБЕРГ', '', '', '', '', '24.12.2024 12:20:29' ],
-    //     [ 'с 08:00 24 дек. до 08:00 25 дек.' ],
-    //     [],
-    //     [],
-    //     [],
-    //     [ '', '2', '', 'Щёлково' ],
-    //     [ '', 'Тонн', '', 'Материал', '🚚', 'Контраг' ],
-    //     [
-    //       '12:07 24дек.',
-    //       '127,8',
-    //       'Щ',
-    //       'ГАБ11,2-16',
-    //       '4',
-    //       'СунскийкарьерАРГЕНТ'
-    //     ],
-    //     [
-    //       '11:28 24дек.',
-    //       '104,7',
-    //       'Щ',
-    //       'ГАБ8-11,2',
-    //       '3',
-    //       'СунскийкарьерАРГЕНТ'
-    //     ],
-    //     [],
-    //     [ '', '0', '', 'Москва' ],
-    //     [ '', 'Тонн', '', 'Материал', '🚚', 'Контраг' ],
-    //     [],
-    //     [],
-    //     [ '', '1', '', 'Посад' ],
-    //     [ '', 'Тонн', '', 'Материал', '🚚', 'Контраг' ],
-    //     [ '12:18 24дек.', '834,6', 'П', 'ГАБ11,2-16', '23', 'Сунскийкарьер' ]
-    //   ]
-
-
-
-    
-    // const headerDate = dailyIncome[1]
-    // console.log(headerDate)
 
     //Look Щ П М
     //
@@ -101,17 +59,13 @@ import { getDailyIncomeData } from "../_lib/readSheet"
             <FeedWrapper>
                 <Header title='Приход Материала'/>
 
-
                 {+skolkoShelkovo > 0 && 
                     <TableIncome сity={'Щёлково'} dailyIncome={dailyIncomeShelkovo} />
-                   
                 }
-
 
                 {+skolkoPosad > 0 && 
                     <TableIncome сity={'Посад'} dailyIncome={dailyIncomePosad} />
                 }
-
 
                 {+skolkoMoskva > 0 && 
                     <TableIncome сity={'Москва'} dailyIncome={dailyIncomeMoskva} />

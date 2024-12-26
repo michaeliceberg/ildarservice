@@ -1,10 +1,10 @@
 import { FeedWrapper } from "@/components/feed-wrapper"
 import { StickyWrapper } from "@/components/sticky-wrapper"
-import { Header } from "./header"
 import { UserProgress } from "@/components/user-progress"
 import { getDailyIncomeData } from "../../_lib/readSheet"
 // import { TableInOut } from "@/components/table-inout"
 import { TableIncome } from "@/components/table-income"
+import { Header } from "@/components/header"
 
 
 
@@ -100,17 +100,14 @@ const IncomePage = async () => {
             <FeedWrapper>
                 <Header title='Приход Материала'/>
 
-
                 {+skolkoShelkovo > 0 && 
                     <TableIncome сity={'Щёлково'} dailyIncome={dailyIncomeShelkovo} />
                    
                 }
 
-
                 {+skolkoPosad > 0 && 
                     <TableIncome сity={'Посад'} dailyIncome={dailyIncomePosad} />
                 }
-
 
                 {+skolkoMoskva > 0 && 
                     <TableIncome сity={'Москва'} dailyIncome={dailyIncomeMoskva} />

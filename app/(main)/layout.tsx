@@ -1,4 +1,5 @@
 import { MobileHeader } from "@/components/mobile-header"
+import { RecipeModal } from "@/components/modals/recipe-modal"
 import { Sidebar } from "@/components/sidebar"
 
 type Props = {
@@ -15,6 +16,7 @@ const MainLayout = ({children}: Props) => {
                     {children}
                 </div>
             </main>
+            <RecipeModal />
         </>
     )
 }

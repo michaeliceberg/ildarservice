@@ -25,11 +25,11 @@ export const Sidebar = ({ className }: Props) => {
 
 			<SidebarItem label='Весы' href='/weights' iconSrc='/ice_weights_icon.svg' />
 
-			<SidebarItem label='Бетон' href='/learn' iconSrc='/ice_concretecar_icon.svg' />
+			<SidebarItem label='Бетон' href='/beton' iconSrc='/ice_concretecar_icon.svg' />
 
 			<SidebarItem label='Асфальт' href='/asphalt' iconSrc='/ice_asphalt_icon.svg' />
 
-			<SidebarItem label='Расход' href='/rashod' iconSrc='/ice_outcome_icon.svg' />
+			<SidebarItem label='Расход' href='/expenses' iconSrc='/ice_outcome_icon.svg' />
 			</div>
 			<div className='p-4'>
 				

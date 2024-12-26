@@ -7,6 +7,7 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
+import { ReplaceDate } from "./table-weights"
 // import { incOut } from "@/db/schema"
   
 
@@ -30,8 +31,7 @@ import {
         // flex justify-center w-full 
         <div>
             <h1 
-                
-
+            
                 className= {
                     сity == 'Щёлково' 
                     ? "w-full rounded-xl  bg-green-500 p-5 text-white flex items-center justify-between" 
@@ -63,17 +63,10 @@ import {
                         </TableRow>
                     </TableHeader>
 
-    {/* 
-                    {ResultLeaderTable.map((cur_user_stat, index) => (
-                        <>
-                            <li key={index}> */}
-
-
-
                     <TableBody>
                         {dailyIncome.map((el, index) => (
                             <TableRow key={index}>
-                                <TableCell className="font-medium">{el[0] }</TableCell>
+                                <TableCell className="font-medium">{ReplaceDate(el[0])}</TableCell>
                                 <TableCell>{el[1]}</TableCell>
                                 <TableCell>{el[3]}</TableCell>
                                 <TableCell>{el[4]}</TableCell>
@@ -83,7 +76,7 @@ import {
                         
                     </TableBody>
                     </Table>
-                    </div>
+            </div>
             </div>
         </div>
     )
