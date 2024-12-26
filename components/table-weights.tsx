@@ -7,7 +7,7 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-import { incOut } from "@/db/schema"
+// import { incOut } from "@/db/schema"
   
 
 type Props = {
@@ -27,11 +27,11 @@ export const ReplaceBid = (Bid: string) => {
 }
 
 export const ReplaceDate = (someDate: string) => {
-    let splitted = someDate.split(" ")
+    const splitted = someDate.split(" ")
 
-    let splittedTime = splitted[1].split(":")
+    const splittedTime = splitted[1].split(":")
 
-    let rearrange = splittedTime[0] + ":" + splittedTime[1] + " " +splitted[0]
+    const rearrange = splittedTime[0] + ":" + splittedTime[1] + " " +splitted[0]
     
     return rearrange
     .replace('.12.2024','дек')

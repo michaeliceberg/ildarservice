@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type Props = {
     recipe: string
@@ -27,8 +27,10 @@ export function RecipeDialog({
     const [comp1, setComp1] = useState("10000")
     const [comp2, setComp2] = useState("20000")
 
-
+    const [isModified, setIsModified] = useState(false)
   
+
+  useEffect(()=>{setIsModified(true)}, [comp1, comp2])
 
   return (
     <Dialog>
@@ -53,13 +55,13 @@ export function RecipeDialog({
 
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Песок
+              {isModified}
             </Label>
             <Input 
                 id={comp1}
                 value={comp1}
                 className="col-span-3" 
-                onChange={(e)=>{setComp1(e.target.value)}}
+                onChange={(e)=>{setComp1(e.target.value) }}
             />
           </div>
 
@@ -78,7 +80,7 @@ export function RecipeDialog({
         </div>
 
         <DialogFooter >
-          <Button className="w-full" type="submit">Сохранить изменения</Button>
+          <Button className="w-full" type="submit" variant={isModified ? "default" : "default"}>Сохранить изменения</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

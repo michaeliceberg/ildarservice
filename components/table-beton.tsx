@@ -9,9 +9,9 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-import { ReplaceBeton, ReplaceBid, ReplaceDate } from "./table-weights"
-import { useState } from "react"
-import { useRecipeModal } from "@/app/store/use-exit-modal"
+import { ReplaceBeton, ReplaceDate } from "./table-weights"
+// import { useState } from "react"
+// import { useRecipeModal } from "@/app/store/use-exit-modal"
 import { RecipeDialog } from "./dialog-recipe"
 // import { incOut } from "@/db/schema"
   
@@ -33,20 +33,20 @@ import { RecipeDialog } from "./dialog-recipe"
 
 
 
-    const {open} = useRecipeModal()
+    // const {open} = useRecipeModal()
 
-    const [a, setA] = useState(1)
+    // const [a, setA] = useState(1)
 
-    const ClickHandler = () => {
-        setA(a+1)
-    }
+    // const ClickHandler = () => {
+    //     setA(a+1)
+    // }
 
 
     return(
 
         <div>
             <h1>
-                {a}
+                {city}
             </h1>
             {/* <div className="w-full bg-white pb-3 flex items-center justify-between border-b-2 mb-5 font-bold lg:z-50"> */}
 

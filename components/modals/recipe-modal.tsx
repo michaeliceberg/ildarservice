@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+// import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
 import {
@@ -16,7 +16,7 @@ import {
 
 import { Button } from '../ui/button'
 import { useEffect, useState } from 'react';
-import Lottie from 'lottie-react'
+// import Lottie from 'lottie-react'
 import { useRecipeModal } from '@/app/store/use-exit-modal'
 // import LottieKapiThink from '@/public/Lottie/LottieKapiThink.json'
 
