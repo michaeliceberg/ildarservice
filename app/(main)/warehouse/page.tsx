@@ -7,17 +7,7 @@ import { UserProgress } from "@/components/user-progress"
 // import { getWeightsData } from "../../_lib/readSheet"
 
 
- const ExpensesPage = async () => {
-
-    // const dataSheet = await getWeightsData()
-    // console.log("dataSheet: ", dataSheet)
-
-
-    // const data = await getIncOut()
-
-   
-
-    // console.log(data)
+ const WarehousePage = async () => {
 
     return(
         <div className="flex flex-row-reverse gap-[48px] px-6">
@@ -26,12 +16,10 @@ import { UserProgress } from "@/components/user-progress"
             </StickyWrapper>
 
             <FeedWrapper>
-                <Header title='Расход материала'/>
-
-                {/* <TableInOut data={data} /> */}
+                <Header title='Склад' iconSrc='/warehouse.svg'/>
             </FeedWrapper>
         </div>
     )
  }
 
- export default ExpensesPage
+ export default WarehousePage

@@ -20,8 +20,8 @@ const font = Nunito({
 
 
 export const metadata: Metadata = {
-  title: "Айсберг",
-  description: "Мобильная версия 2.0",
+  title: "Ильдар Сервис",
+  description: "Мобильная версия",
 };
 
 export default function RootLayout({
