@@ -192,7 +192,6 @@ const CarIdPage =  async (props: { params: Params }) => {
                                             Код работы: {JSON.stringify(work.id)}
                                         </h3>
 
-
                                         <h3 className="flex flex-1 gap-2 text-sm text-gray-500">
                                             <CalendarCheck className="h-6 w-6 text-gray-500"/>
                                             {/* {JSON.stringify(work.dateDone)} */}
