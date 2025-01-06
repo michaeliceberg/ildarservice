@@ -91,10 +91,7 @@ const CarIdPage =  async (props: { params: Params }) => {
 
                         <FeedWrapper>
                             
-                            {/* <Header title={currentCar == undefined ? 'no car': currentCar.model} iconSrc={carsBrandToSvgPath(currentCar.brand)}/> */}
                             <Header title={currentCar.model} iconSrc={carsBrandToSvgPath(currentCar.brand)}/>
-                            {/* <ClientBanner title={currentClient.address} description={currentClient.fullName} /> */}
-                        
 
                             <div className="w-full rounded-xl  bg-blue-400 p-5 text-white flex items-center justify-between">
 
@@ -198,7 +195,13 @@ const CarIdPage =  async (props: { params: Params }) => {
 
                                         <h3 className="flex flex-1 gap-2 text-sm text-gray-500">
                                             <CalendarCheck className="h-6 w-6 text-gray-500"/>
-                                            {JSON.stringify(work.dateDone)}
+                                            {/* {JSON.stringify(work.dateDone)} */}
+                                            {work.dateDone.toLocaleDateString("en-US")}
+                                        </h3>
+
+                                        <h3 className="flex flex-1 gap-2 text-sm text-gray-500">
+                                            <Gauge className="h-6 w-6 text-gray-500"/>
+                                            {work.odometerWas}км
                                         </h3>
 
 

@@ -18,11 +18,12 @@ import { useState, useTransition } from "react"
 
 type Props = {
   clientId: number
+  clientFullName: string
 }
 
 
 export const AddCar = ({
-  clientId
+  clientId, clientFullName
 }: Props) => {
  
   const [pending, startTransition] = useTransition()
@@ -74,7 +75,7 @@ export const AddCar = ({
         <DialogHeader>
           <DialogTitle>
             {/* <p className="pb-2 flex justify-center content-center">{contrag}</p> */}
-            <p className="mt-2 pb-2 flex justify-center content-center text-white bg-gray-700 pt-2 rounded-xl">Новая машина</p>
+            <p className="mt-2 pb-2 flex justify-center content-center text-white bg-gray-700 pt-2 rounded-xl">Новая машина {clientFullName}</p>
             {/* <p className="mt-2 pb-2 flex justify-center content-center">{done}</p> */}
           </DialogTitle>
           <DialogDescription>

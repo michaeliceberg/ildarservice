@@ -98,6 +98,7 @@ export const TableClients = ({
                                     
                                         <AddCar 
                                             clientId = {client.clientId}
+                                            clientFullName = {client.clientFullName}
                                         />
 
                                     </div>

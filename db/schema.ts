@@ -61,6 +61,7 @@ export const works = pgTable('works', {
 	id: serial('id').primaryKey(),
 	dateDone: timestamp('date_done').notNull().defaultNow(),
 	workDone:  text('work_done').notNull(),
+	odometerWas: text('odometer_was'),
 	carId: integer('car_id')
 		.references(() => cars.id, { onDelete: 'cascade' })
 		.notNull(),
