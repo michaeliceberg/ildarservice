@@ -2,6 +2,8 @@
 
 import db from "@/db/drizzle";
 import { cars } from "@/db/schema";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { cache } from "react";
 
 
@@ -28,5 +30,11 @@ export const uploadNewCar = cache(async (clientToAddObject: typeof cars.$inferSe
 			clientId: clientId,
 		})
 	
+
+		revalidatePath('/')
+		revalidatePath('/allwork')
+		revalidatePath('/warehouse')
+		redirect('/');
+		// revalidatePath(`/car/${carId}`)
  
 });

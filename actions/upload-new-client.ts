@@ -2,6 +2,8 @@
 
 import db from '@/db/drizzle';
 import { clients } from '@/db/schema';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import {cache} from 'react'
 // import db from './drizzle';
 // import { cars } from './schema';
@@ -28,5 +30,8 @@ export const uploadNewClient = cache(async (clientToAddObject: typeof clients.$i
 		    description: clientToAddObject.description,
 		})
 	
- 
+		revalidatePath('/')
+		revalidatePath('/allwork')
+		revalidatePath('/warehouse')
+		redirect('/');
 });
