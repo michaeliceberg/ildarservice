@@ -1,5 +1,6 @@
 'use client'
 
+import { uploadNewCar } from "@/actions/upload-new-car"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,7 +13,6 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { uploadNewCar } from "@/db/queries"
 import { Car } from "lucide-react"
 import { useState, useTransition } from "react"
 

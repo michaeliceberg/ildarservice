@@ -1,6 +1,6 @@
 import {cache} from 'react'
 import db from './drizzle';
-import { cars, clients } from './schema';
+import { cars } from './schema';
 
 
 
@@ -31,38 +31,38 @@ export const getWorks = cache(async () => {
 
 
 
-export const uploadNewClient = cache(async (clientToAddObject: typeof clients.$inferSelect) => {
+// export const uploadNewClient = cache(async (clientToAddObject: typeof clients.$inferSelect) => {
 	
-	await db.insert(clients).values(
-		{
-			id: getRandomInt(10000, 9999999),
-			fullName: clientToAddObject.fullName,
-		    dateBirth: clientToAddObject.dateBirth,
-		    phone: clientToAddObject.phone,
-		    telegram: clientToAddObject.telegram,
-		    address: clientToAddObject.address,
-		    description: clientToAddObject.description,
-		})
-	
- 
-});
-
-
-
-export const uploadNewCar = cache(async (clientToAddObject: typeof cars.$inferSelect, clientId: number) => {
-	
-	await db.insert(cars).values(
-		{
-			id: getRandomInt(10000, 9999999),
-			number: clientToAddObject.number,
-		    brand: clientToAddObject.brand,
-		    model: clientToAddObject.model,
-		    yearProduction: clientToAddObject.yearProduction,
-		    odometer: clientToAddObject.odometer,
-		    vin: clientToAddObject.vin,
-			clientId: clientId,
-		})
+// 	await db.insert(clients).values(
+// 		{
+// 			id: getRandomInt(10000, 9999999),
+// 			fullName: clientToAddObject.fullName,
+// 		    dateBirth: clientToAddObject.dateBirth,
+// 		    phone: clientToAddObject.phone,
+// 		    telegram: clientToAddObject.telegram,
+// 		    address: clientToAddObject.address,
+// 		    description: clientToAddObject.description,
+// 		})
 	
  
-});
+// });
+
+
+
+// export const uploadNewCar = cache(async (clientToAddObject: typeof cars.$inferSelect, clientId: number) => {
+	
+// 	await db.insert(cars).values(
+// 		{
+// 			id: getRandomInt(10000, 9999999),
+// 			number: clientToAddObject.number,
+// 		    brand: clientToAddObject.brand,
+// 		    model: clientToAddObject.model,
+// 		    yearProduction: clientToAddObject.yearProduction,
+// 		    odometer: clientToAddObject.odometer,
+// 		    vin: clientToAddObject.vin,
+// 			clientId: clientId,
+// 		})
+	
+ 
+// });
 

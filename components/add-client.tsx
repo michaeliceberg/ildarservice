@@ -1,5 +1,6 @@
 'use client'
 
+import { uploadNewClient } from "@/actions/upload-new-client"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { uploadNewClient } from "@/db/queries"
+// import { uploadNewClient } from "@/db/queries"
 import { Plus } from "lucide-react"
 import { useState, useTransition } from "react"
 
