@@ -20,7 +20,7 @@ const font = Nunito({
 
 
 export const metadata: Metadata = {
-  title: "Ильдар Сервис",
+  title: "Ильдар Гараж",
   description: "Мобильная версия",
 };
 
