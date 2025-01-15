@@ -11,7 +11,7 @@ export const Header = () => {
                         width={40}
                         alt='mascot'/>
                     <h1 className="text-2xl font-extrabold text-blue-400 tracking-wide">
-                        ildarService
+                        ildarGarage
                     </h1>
                 </div>
             </div>

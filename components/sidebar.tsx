@@ -16,7 +16,7 @@ export const Sidebar = ({ className }: Props) => {
 			<Link href='/income'>
 				<div className='pt-8 pl-4 pb-7 flex items-center gap-x-3'>
 					<Image src='/iservice.svg' height={40} width={40} alt='Iceberg' />
-					<h1 className='text-2xl font-extrabold text-blue-400 tracking-wide'>ildarService</h1>
+					<h1 className='text-2xl font-extrabold text-blue-400 tracking-wide'>ildarGarage</h1>
 				</div>
 			</Link>
 			<div className='flex flex-col gap-y-2 flex-1'>
