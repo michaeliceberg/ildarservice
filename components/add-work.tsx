@@ -13,12 +13,30 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-// import { uploadNewClient } from "@/db/queries"
-import { Plus } from "lucide-react"
+import { Wrench } from "lucide-react"
 import { useState } from "react"
 
+type Props = {
+  allWorksInfo: {
+    id: number,
+    dateDone: Date,
+    odometerWas: string,
+    workDone: string,
+    brand: string,
+    model: string,
+    vin: string,
+    yearProduction: string,
+    number: string,
+    clientFullName: string,
+    description: string,
+    phone: string,
+    imageUrl: string,
+}[]
+}
 
-export const AddWork = () => {
+export const AddWork = ({
+  allWorksInfo,
+}:Props) => {
  
 
 
@@ -148,8 +166,8 @@ const HandleOnClick = () => {
     <Dialog>
       <DialogTrigger asChild>
 
-          <Button variant='default'>
-            <Plus className="mr-2"/>
+          <Button variant='default' className="flex mx-auto mb-10">
+            <Wrench className="mr-2"/>
               Добавить работу
           </Button>
 
@@ -161,12 +179,12 @@ const HandleOnClick = () => {
             <p className="mt-2 pb-2 flex justify-center content-center text-white bg-gray-700 pt-2 rounded-xl">Новая работа</p>
             {/* <p className="mt-2 pb-2 flex justify-center content-center">{done}</p> */}
           </DialogTitle>
-          <DialogDescription>
-
+          
+          <DialogDescription className="text-center">
             {/* <p className={stampOriginal.length > 0 ? "bg-white" : "bg-yellow-200 font-bold flex justify-center content-center rounded-xl"}> */}
               {/* {stampOriginal.length > 0 ? "Изменить рецепт:" : "⚠️ Новый рецепт!"} */}
             {/* </p> */}
-            Для машины
+            {allWorksInfo[0].number}
           </DialogDescription>
         </DialogHeader>
 
