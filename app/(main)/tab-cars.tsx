@@ -1,32 +1,36 @@
 'use client'
 
 import { AddWork } from "@/components/add-work"
-import { Input } from "@/components/ui/input"
-import { cars, clients, works } from "@/db/schema"
-import { CalendarCheck, Code, Gauge, Search, User, Wrench } from "lucide-react"
-import { useState } from "react"
+import { CalendarCheck, Code, Gauge, User, Wrench } from "lucide-react"
+import Image from "next/image"
 
 
 
 
 type Props = {
-    AllCars: typeof cars.$inferSelect[]
-    AllWorks: typeof works.$inferSelect[]
-    AllClients: typeof clients.$inferSelect[]
+    allWorksInfo: {
+        id: number,
+        dateDone: Date,
+        odometerWas: string,
+        workDone: string,
+        brand: string,
+        model: string,
+        vin: string,
+        yearProduction: string,
+        number: string,
+        clientFullName: string,
+        description: string,
+        phone: string,
+        imageUrl: string,
+    }[]
   }
   
 
-export const TableAllWorks = ({
-    AllCars, AllWorks, AllClients
+export const TabCarsWork = ({
+    allWorksInfo
 }: Props) => {
 
 
-if (!AllCars) {
-    throw new Error('Нет машин!');
-}
-if (!AllWorks) {
-    throw new Error('Нет клиентов!');
-}
 
 function getRandomInt(min: number, max: number) {
 	const minCeiled = Math.ceil(min);
@@ -34,37 +38,45 @@ function getRandomInt(min: number, max: number) {
 	return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
   }
 
-const [searchCar, setSearchCar] = useState('')
+// const [searchCar, setSearchCar] = useState('')
 
 
-const noFilterAllWorksInfo = AllWorks.map(works => {
-    const filteredCars = AllCars.filter(car => car.id === works.carId)[0]
-    const filteredClients = AllClients.filter(client => client.id === filteredCars.clientId)[0]
-    return ({
-        id: works.id,
-        dateDone: works.dateDone,
-        odometerWas: works.odometerWas,
-        workDone: works.workDone,
-        brand: filteredCars.brand,
-        model: filteredCars.model,
-        vin: filteredCars.vin,
-        yearProduction: filteredCars.yearProduction,
-        number: filteredCars.number,
-        clientFullName: filteredClients.fullName,
-        description: filteredClients.description,
-        phone: filteredClients.phone,
-    })
-})
+// const noFilterAllWorksInfo = TabCarsWork.map(works => {
+//     const filteredCars = AllCars.filter(car => car.id === works.carId)[0]
+//     const filteredClients = AllClients.filter(client => client.id === filteredCars.clientId)[0]
+//     return ({
+//         id: works.id,
+//         dateDone: works.dateDone,
+//         odometerWas: works.odometerWas,
+//         workDone: works.workDone,
+//         brand: filteredCars.brand,
+//         model: filteredCars.model,
+//         vin: filteredCars.vin,
+//         yearProduction: filteredCars.yearProduction,
+//         number: filteredCars.number,
+//         clientFullName: filteredClients.fullName,
+//         description: filteredClients.description,
+//         phone: filteredClients.phone,
+//         imageUrl: works.imageUrl,
+//     })
+// })
 
-const allWorksInfo = noFilterAllWorksInfo.filter(el => el.number?.toLocaleLowerCase().includes(searchCar.toLocaleLowerCase()) 
-    || el.brand?.toLowerCase().includes(searchCar.toLocaleLowerCase())
-    || el.model?.toLowerCase().includes(searchCar.toLocaleLowerCase()))
+
+
 
 return(
 
     <div>
         
-        <div className="pb-5 pt-5 flex items-center justify-center">
+        {/* <div> 
+            {uniqueCarsTO.map(el => (
+                <div>
+                    {el}
+                </div>
+            ))}
+        </div> */}
+
+        {/* <div className="pb-5 pt-5 flex items-center justify-center">
 
                 <div key = {'searchCar'} className="grid grid-cols-4 items-center gap-4">
 
@@ -81,7 +93,7 @@ return(
 
             </div>
 
-        </div>
+        </div> */}
 
         {/* <p className="pb-2 flex justify-center content-center text-white bg-gray-700 pt-2 rounded-xl">Проведённые работы:</p> */}
 
@@ -96,6 +108,9 @@ return(
 
                                     <div key={getRandomInt(10000,999999)} className="space-y-2.5 m-4">
                                     
+                                        {work.imageUrl && 
+                                        <Image src={'/to/'+work.imageUrl} alt={work.imageUrl} height={270} width={293.33} className='rounded-lg drop-shadow-md border object-cover' />
+                                        }
 
                                         <h3 className="flex flex-1 gap-2 text-sm text-gray-500">
                                             <Code className="h-6 w-6 text-gray-500"/>
@@ -179,4 +194,4 @@ return(
 )
 }
 
-export default TableAllWorks
+export default TabCarsWork

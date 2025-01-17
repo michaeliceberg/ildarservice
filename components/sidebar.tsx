@@ -21,9 +21,9 @@ export const Sidebar = ({ className }: Props) => {
 			</Link>
 			<div className='flex flex-col gap-y-2 flex-1'>
 				
-			<SidebarItem label='Клиенты' href='/' iconSrc='/clients.svg' />
+			<SidebarItem label='Все работы' href='/' iconSrc='/allworks.svg' />
 
-			<SidebarItem label='Все работы' href='/allworks' iconSrc='/allworks.svg' />
+			<SidebarItem label='Клиенты' href='/allclients' iconSrc='/clients.svg' />
 
 			<SidebarItem label='Склад' href='/warehouse' iconSrc='/warehouse.svg' />
 

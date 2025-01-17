@@ -109,9 +109,13 @@ const HandleOnClick = () => {
   formData.append("file", file);
  
   // fetch("/api/upload", {
-  fetch("/api/uploader", {
-      method: "POST",
-    body: formData,
+    // fetch(`/api/upl/${file.name}`, {
+    fetch(`/api/${file.name}`, {
+        // fetch(`/api/${file}`, {
+        // fetch("/api/upl", {
+        // method: "POST",
+      method: "GET",
+    // body: formData,
   })
     .then(response => response.json())
     .then(data => console.log(data))
