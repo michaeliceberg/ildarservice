@@ -1,7 +1,7 @@
 'use server'
 
 import db from "@/db/drizzle";
-import { cars } from "@/db/schema";
+import { works } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cache } from "react";
@@ -16,21 +16,29 @@ function getRandomInt(min: number, max: number) {
 
 
 
-export const uploadNewCar = cache(async (
-	clientToAddObject: typeof cars.$inferSelect, 
-	clientId: number
+export const uploadNewWork = cache(async (
+	detailsWork: 
+		{      
+			id: number,
+			carId: number,
+			imageUrl: string,
+			odometerWas: string,
+			workDone: string,
+			dateDone: Date
+		}
 ) => {
 	
-	await db.insert(cars).values(
+
+	console.log(detailsWork.carId,)
+
+	await db.insert(works).values(
 		{
 			id: getRandomInt(10000, 9999999),
-			number: clientToAddObject.number,
-		    brand: clientToAddObject.brand,
-		    model: clientToAddObject.model,
-		    yearProduction: clientToAddObject.yearProduction,
-		    odometer: clientToAddObject.odometer,
-		    vin: clientToAddObject.vin,
-			clientId: clientId,
+			carId: detailsWork.carId,
+			imageUrl: detailsWork.imageUrl,
+			odometerWas: detailsWork.odometerWas,
+			workDone: detailsWork.workDone,
+			dateDone: detailsWork.dateDone,
 		})
 	
 
@@ -38,7 +46,6 @@ export const uploadNewCar = cache(async (
 		revalidatePath('/allwork')
 		revalidatePath('/warehouse')
 		redirect('/');
-		// redirect('/all-clients');
 		// revalidatePath(`/car/${carId}`)
  
 });

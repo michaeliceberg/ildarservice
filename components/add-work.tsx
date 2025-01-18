@@ -1,5 +1,6 @@
 'use client'
 
+import { uploadNewWork } from "@/actions/upload-new-work"
 // import { uploadNewClient } from "@/actions/upload-new-client"
 import { Button } from "@/components/ui/button"
 import {
@@ -14,11 +15,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Wrench } from "lucide-react"
-import { useState } from "react"
+import { useState, useTransition } from "react"
 
 type Props = {
   allWorksInfo: {
     id: number,
+    carId: number,
     dateDone: Date,
     odometerWas: string,
     workDone: string,
@@ -40,49 +42,15 @@ export const AddWork = ({
  
 
 
+  const [pending, startTransition] = useTransition()
+  const [status, setStatus] = useState('')
 
-
-
-  // const fileInput = document.getElementById("fileInput"); // Replace with your HTML element ID
-  // const file = fileInput.files[0];
-
-
+  console.log(pending)
+  console.log(status)
 
 
 
 
-
-  // const onSubmit=async(e)=>{ 
-  //   e.preventDefault();
-  //   const fd=new FormData()
-  //   fd.append('myfile', image.name)
-  //   let res=await fetch(`http://localhost:3000/api/upload`,{
-  //       method: 'POST',
-  //       headers: {
-  //         "Content-Type": "image/jpeg",
-  //       },
-  //       body: fd,
-  //     })
-  //      let response=await res.json(); 
- 
- 
- 
- 
-  // function getImageData(event: ChangeEvent<HTMLInputElement>) {
-  //   // FileList is immutable, so we need to create a new one
-  //   const dataTransfer = new DataTransfer();
-  
-  //   // Add newly uploaded images
-  //   Array.from(event.target.files!).forEach((image) =>
-  //     dataTransfer.items.add(image)
-  //   );
-  
-  //   const files = dataTransfer.files;
-  //   const displayUrl = URL.createObjectURL(event.target.files![0]);
-  
-  //   return { files, displayUrl };
-  // }
- 
  
  
  
@@ -91,28 +59,20 @@ export const AddWork = ({
  
 
 
-
-
- 
-// const [pending, startTransition] = useTransition()
-// const [status, setStatus] = useState('')
-
-// console.log(pending)
-
 const HandleOnClick = () => {
 
     // console.log('pending')
 
     console.log(file)
     // console.log(picture)
-    // startTransition(()=> {s
+    startTransition(()=> {
 
-    //   uploadNewClient(detailsClient)
-    //   .then(()=>{
-    //     setStatus('работа Добавлена! Закройте и обновите')
-    //   })
+      uploadNewWork(detailsWork)
+      .then(()=>{
+        setStatus('Работа добавлена! Закройте и обновите')
+      })
 
-    // })
+    })
   }
 
 
@@ -145,20 +105,29 @@ const HandleOnClick = () => {
 
 
 
+  // export const works = pgTable('works', {
+  //   id: serial('id').primaryKey(),
+  //   dateDone: timestamp('date_done').notNull().defaultNow(),
+  //   workDone:  text('work_done').notNull(),
+  //   odometerWas: text('odometer_was'),
+  //   imageUrl: text('image_url'),
+  //   carId: integer('car_id')
+  //     .references(() => cars.id, { onDelete: 'cascade' })
+  //     .notNull(),
+  //   // order: integer('order').notNull(),
+  // });
+  
 
 
 
-
-  const [detailsClient, setDetailsClient] = useState (
+  const [detailsWork, setDetailsWork] = useState (
     {
       id: 1001,
-      fullName: '',
-      dateBirth: '',
-      phone: '',
-      telegram: '',
-      address: '',
-      description: '',
-      dateCreated: new Date()
+      carId: allWorksInfo[0].carId,
+      imageUrl: '',
+      odometerWas: '',
+      workDone: '',
+      dateDone: new Date()
     }
   )
 
@@ -199,10 +168,10 @@ const HandleOnClick = () => {
                   Что делали
                 </Label>
                 <Input 
-                    id='fullName'
-                    value={detailsClient.fullName}
+                    id='workDone'
+                    value={detailsWork.workDone}
                     className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, fullName: (e.target.value)}) }}
+                    onChange={(e)=>{setDetailsWork({...detailsWork, workDone: (e.target.value)}) }}
                 />
             </div>
 
@@ -212,25 +181,25 @@ const HandleOnClick = () => {
                   Одометр
                 </Label>
                 <Input 
-                    id='phone'
-                    value={detailsClient.phone}
+                    id='odometerWas'
+                    value={detailsWork.odometerWas}
                     className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, phone: (e.target.value)}) }}
+                    onChange={(e)=>{setDetailsWork({...detailsWork, odometerWas: (e.target.value)}) }}
                 />
             </div>
 
 
-            <div key = {'На будущее'} className="grid grid-cols-4 items-center gap-4">
+            {/* <div key = {'На будущее'} className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="text-right">
                   На будущее
                 </Label>
                 <Input 
                     id='telegram'
-                    value={detailsClient.telegram}
+                    value={detailsWork.}
                     className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, telegram: (e.target.value)}) }}
+                    onChange={(e)=>{setDetailsWork({...detailsWork, telegram: (e.target.value)}) }}
                 />
-            </div>
+            </div> */}
 
 
 
@@ -248,64 +217,6 @@ const HandleOnClick = () => {
                 />
             </div>
 
-
-
-{/* 
-            import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
- 
-export function InputFile() {
-  return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="picture">Picture</Label>
-      <Input id="picture" type="file" />
-    </div>
-  )
-} */}
-
-
-
-
-            {/* <div key = {'др'} className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  др🎂
-                </Label>
-                <Input 
-                    id='dateBirth'
-                    value={detailsClient.dateBirth}
-                    className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, dateBirth: (e.target.value)}) }}
-                />
-            </div> */}
-
-
-            {/* <div key = {'адрес'} className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  адрес
-                </Label>
-                <Input 
-                    id='address'
-                    value={detailsClient.address}
-                    className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, address: (e.target.value)}) }}
-                />
-            </div> */}
-
-            {/* <div key = {'описание'} className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  описание
-                </Label>
-                <Input 
-                    id='description'
-                    value={detailsClient.description}
-                    className="col-span-3" 
-                    onChange={(e)=>{setDetailsClient({...detailsClient, description: (e.target.value)}) }}
-                />
-            </div> */}
-
-            {/* { status != '' &&
-              <p className="mt-2 pb-2 flex justify-center content-center text-white bg-green-500 pt-2 rounded-xl">{status}</p> 
-            } */}
             
           </div>
         

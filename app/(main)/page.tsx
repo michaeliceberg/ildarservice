@@ -6,6 +6,8 @@ import { getCars, getClients, getWorks } from "@/db/queries"
 import TableAllWorks from "./table-all-works"
 
 
+
+
  const AllWorksPage = async () => {
 
     const [
@@ -29,9 +31,13 @@ import TableAllWorks from "./table-all-works"
         throw new Error('Нет клиентов!');
     }
     
-    
+
+    const allCarNums = [...new Set(AllCars.map(item => item.number))];
 
 
+
+    // Машины с УЖЕ имеющимися РАБОТАМИ
+    //
     const noFilterAllWorksInfo = AllWorks.map(works => {
         const filteredCars = AllCars.filter(car => car.id === works.carId)[0]
         const filteredClients = AllClients.filter(client => client.id === filteredCars.clientId)[0]
@@ -40,6 +46,8 @@ import TableAllWorks from "./table-all-works"
             dateDone: works.dateDone || '',
             odometerWas: works.odometerWas || '',
             workDone: works.workDone|| '',
+            imageUrl: works.imageUrl|| '',
+            carId: filteredCars.id || 0,
             brand: filteredCars.brand|| '',
             model: filteredCars.model|| '',
             vin: filteredCars.vin || '',
@@ -48,25 +56,47 @@ import TableAllWorks from "./table-all-works"
             clientFullName: filteredClients.fullName|| '',
             description: filteredClients.description|| '',
             phone: filteredClients.phone|| '',
-            imageUrl: works.imageUrl|| '',
         })
     })
 
 
+
+    // Ищим машины БЕЗ РАБОТ
+    //
+    let carsNoWorks = AllCars.map(car => {
+        // смотрим есть ли эта машина в Works
+        const isInWork = AllWorks.filter(works => works.carId == car.id)
+
+        if (isInWork.length == 0) {
+            return car
+        }
+    })
+    carsNoWorks = carsNoWorks.filter(function( element ) {
+        return element !== undefined;
+     });
+       
+    const noWorksFilter = carsNoWorks.map(car => {
+        return ({
+            id: 0,
+            dateDone: new Date(),
+            odometerWas: '',
+            workDone: '',
+            imageUrl: '',
+            carId: car?.id || 0,
+            brand: car?.brand || '',
+            model: car?.model || '',
+            vin: car?.vin || '',
+            yearProduction: car?.yearProduction || '',
+            number: car?.number || '',
+            clientFullName: AllClients.filter(el => el.id == car?.clientId)[0].fullName || '',
+            description: AllClients.filter(el => el.id == car?.clientId)[0].description || '',
+            phone: AllClients.filter(el => el.id == car?.clientId)[0].phone || '',
+        })
+    })
+
+
+
     const allWorksInfo = noFilterAllWorksInfo
-
-
-    // .filter(
-    //     el => el.number?.toLocaleLowerCase().includes(searchCar.toLocaleLowerCase())
-    //     || el.brand?.toLowerCase().includes(searchCar.toLocaleLowerCase())
-    //     || el.model?.toLowerCase().includes(searchCar.toLocaleLowerCase())
-    // )
-
-
-
-
-    // const mixers = carsObject.filter(el => el.type.toUpperCase()== 'М')
-
 
 
 
@@ -79,10 +109,12 @@ import TableAllWorks from "./table-all-works"
             <FeedWrapper>
                 <Header title='Все работы' iconSrc='/allworks.svg'/>
 
-                {/* <TableAllWorks AllCars={AllCars} AllWorks={AllWorks} AllClients={AllClients}/> */}
-                <TableAllWorks allWorksInfo={allWorksInfo}/>
-
-
+                <TableAllWorks 
+                    allWorksInfo={allWorksInfo} 
+                    allCarNums={allCarNums} 
+                    carsNoWorks={carsNoWorks}
+                    noWorksFilter={noWorksFilter}
+                />
 
 
             </FeedWrapper>

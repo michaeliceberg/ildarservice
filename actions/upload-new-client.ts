@@ -30,8 +30,10 @@ export const uploadNewClient = cache(async (clientToAddObject: typeof clients.$i
 		    description: clientToAddObject.description,
 		})
 	
-		revalidatePath('/')
+		revalidatePath('/all-clients')
 		revalidatePath('/allwork')
 		revalidatePath('/warehouse')
-		redirect('/');
+		revalidatePath('/')
+		// redirect('/all-clients')
+		redirect('/')
 });

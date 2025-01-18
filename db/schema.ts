@@ -24,7 +24,6 @@ export const coursesRelations = relations(clients, ({ many }) => ({
 
 
 
-
 export const cars = pgTable('cars', {
 	id: serial('id').primaryKey(),
 	number: text('number'),  //a001aa777
